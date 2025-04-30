@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+
+  robot:
+    build:
+      context: .
+    container_name: udk-bot
+    command: >
+      /bin/sh -c "
+                  while ! nc -z postgres 5432; do sleep 1; done;
+                  aerich upgrade;
+                  python bot.py"
+    volumes:
+      - ./src:/app/src
+      - ./static:/app/static
+      - ./media:/app/media
+    networks:
+      - shared_network
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+
+  postgres:
+    image: postgres:17.0
+    container_name: udk-db
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - ./.volumes/pgdata:/var/lib/postgresql/data
+    ports:
+      - "5439:5432"
+
+    networks:
+      - shared_network
+
+
+
+networks:
+  shared_network:
+    driver: bridge

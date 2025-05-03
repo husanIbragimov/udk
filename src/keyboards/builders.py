@@ -1,4 +1,4 @@
-from aiogram.types import InlineKeyboardMarkup
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 
 
@@ -41,3 +41,21 @@ async def inline_kb(text: str | list, callback_data: str | list) -> InlineKeyboa
     [builder.button(text=item, callback_data=call) for item, call in zip(text, callback_data)]
 
     return builder.as_markup()
+
+
+async def vertical_inline_kb(chat_link):
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [
+            InlineKeyboardButton(
+                text="Kanalga o'tish",
+                url=f'{chat_link}'
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                text="Tasdiqlash",
+                callback_data="check_subscription"
+            )
+        ]
+    ])
+    return keyboard

@@ -9,14 +9,15 @@ from data.config import ADMINS, MEDIA_PATH
 from keyboards import builders
 from keyboards import reply
 from utils.db.models import Order, Payment
-from utils.services import download_file, send_to_admins, get_udk
+from utils.services import download_file, send_to_admins, get_udk, user_is_member
 from utils.states import UDK
 
 router = Router()
 
 
 @router.message(F.text == "🔍 UDK ni aniqlash")
-async def question_state(message: Message, state: FSMContext):
+async def question_state(message: Message, state: FSMContext, bot: Bot):
+    await user_is_member(message, bot)
     await state.clear()
     await message.answer("Savolni kiriting...")
     await state.set_state(UDK.question)

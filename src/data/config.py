@@ -10,6 +10,7 @@ CHANNELS = os.getenv('CHANNEL_ID', '-1001275637856').split(', ')
 TELEGRAM_API = os.getenv('TELEGRAM_API')
 MEDIA_PATH = os.getenv('MEDIA_PATH')
 MEDIA_URL = os.getenv('MEDIA_URL')
+API_KEY = os.getenv('API_KEY')
 # print(CHANNEL_ID)
 
 # postgres

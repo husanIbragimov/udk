@@ -10,4 +10,5 @@ class Form(StatesGroup):
 
 class UDK(StatesGroup):
     check_image = State()
+    question = State()
     message = State()

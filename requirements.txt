@@ -7,3 +7,4 @@ tortoise-orm[asyncpg]~=0.24.0
 tomli_w~=1.2.0
 tomlkit~=0.13.2
 aerich~=0.8.1
+openai==1.77.0

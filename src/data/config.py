@@ -5,8 +5,9 @@ from dotenv import load_dotenv  # pip install python-dotenv
 load_dotenv()
 
 BOT_TOKEN = os.getenv('BOT_TOKEN')
-ADMINS = os.getenv('ADMINS').split(', ')
-CHANNEL_ID = os.getenv('CHANNEL_ID', '-1001275637856').split(', ')
+ADMINS = os.getenv('ADMINS').split(',')
+print("ADMINS", ADMINS)
+CHANNEL_ID = os.getenv('CHANNEL_ID', '-1001275637856').split(',')
 TELEGRAM_API = os.getenv('TELEGRAM_API')
 MEDIA_PATH = os.getenv('MEDIA_PATH')
 MEDIA_URL = os.getenv('MEDIA_URL')

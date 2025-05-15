@@ -3,8 +3,7 @@ from typing import Union
 
 from aiogram import Bot
 from aiogram.fsm.context import FSMContext
-from aiogram.types import Message, CallbackQuery
-from aiogram.enums import ChatMemberStatus
+from aiogram.types import Message
 from aiogram.types.input_file import FSInputFile
 from openai import OpenAI, ChatCompletion
 from data.config import ADMINS, API_KEY, CHANNEL_ID
@@ -61,7 +60,7 @@ def get_udk(topic):
     return completion.choices[0].message.content
 
 
-async def user_is_member(message: Union[Message, CallbackQuery], bot: Bot):
+async def user_is_member(message: Message, bot: Bot):
     chat_member = await bot.get_chat_member(CHANNEL_ID[0], message.from_user.id)
     print(chat_member)
     chat_link = await bot.create_chat_invite_link(
@@ -69,8 +68,7 @@ async def user_is_member(message: Union[Message, CallbackQuery], bot: Bot):
         name="Kanalga o'tish"
     )
     inline_btn = await builders.vertical_inline_kb(chat_link.invite_link)
-    print((chat_member.status, [ChatMemberStatus.MEMBER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.CREATOR]))
-    if not chat_member.status in [ChatMemberStatus.MEMBER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.CREATOR]:
+    if chat_member.status == "left":
         await message.answer("Sizni tekshiryapmiz...", reply_markup=reply.rmk)
         await message.answer("Botdan foydalanish uchun kanalimizga obuna bo'lishingiz kerak.", reply_markup=inline_btn)
         return False

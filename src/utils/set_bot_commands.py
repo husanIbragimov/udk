@@ -4,6 +4,7 @@ from aiogram.methods import SetMyCommands
 async def set_private_default_commands(bot):
     commands = [
         types.BotCommand(command="start", description="Botni qayta ishga tushirish"),
+        types.BotCommand(command="udk", description="UDKni anlash"),
         types.BotCommand(command="help", description="Yordam olish"),
     ]
 

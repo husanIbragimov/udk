@@ -43,19 +43,15 @@ async def inline_kb(text: str | list, callback_data: str | list) -> InlineKeyboa
     return builder.as_markup()
 
 
-async def vertical_inline_kb(chat_link):
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [
-            InlineKeyboardButton(
-                text="Kanalga o'tish",
-                url=f'{chat_link}'
-            )
-        ],
-        [
-            InlineKeyboardButton(
-                text="Tasdiqlash",
-                callback_data="check_subscription"
-            )
-        ]
-    ])
-    return keyboard
+async def vertical_inline_kb(chat_link) -> InlineKeyboardMarkup:
+    keyboard = InlineKeyboardBuilder()
+    keyboard.button(
+        text="Kanalga o'tish",
+        url=f'{chat_link}'
+    )
+    keyboard.button(
+        text="Tasdiqlash",
+        callback_data="check_subscription"
+    )
+    keyboard.adjust(2)
+    return keyboard.as_markup()

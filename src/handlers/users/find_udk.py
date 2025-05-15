@@ -1,11 +1,12 @@
-import os
 from datetime import date
+from typing import Union
 
 from aiogram import Router, F, Bot
+from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, CallbackQuery
 
-from data.config import ADMINS, MEDIA_PATH
+from data.config import MEDIA_PATH
 from keyboards import builders
 from keyboards import reply
 from utils.db.models import Order, Payment
@@ -19,13 +20,22 @@ router = Router()
 async def question_state(message: Message, state: FSMContext, bot: Bot):
     await user_is_member(message, bot)
     await state.clear()
-    await message.answer("Savolni kiriting...")
+    await message.answer("Dissertatsiya mavzusini kiriting")
     await state.set_state(UDK.question)
+
+@router.message(Command('udk'))
+async def question_state(message: Message, state: FSMContext, bot: Bot):
+    await user_is_member(message, bot)
+    await state.clear()
+    await message.answer("Dissertatsiya mavzusini kiriting")
+    await state.set_state(UDK.question)
+
 
 
 @router.message(UDK.question)
 async def save_question(message: Message, state: FSMContext):
-    await message.answer("Iltimos to'lov qiling va rasmini shu yerga yuklang.", reply_markup=reply.rmk)
+    await message.answer("Iltimos to'lov qiling va to'lov chekining rasmini yuboring.(To'lov narxi 5000 so'm)",
+                         reply_markup=reply.rmk)
     order = await Order.create(
         user_id=message.from_user.id,
         question=message.text,

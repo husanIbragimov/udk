@@ -20,14 +20,14 @@ router = Router()
 async def question_state(message: Message, state: FSMContext, bot: Bot):
     await user_is_member(message, bot)
     await state.clear()
-    await message.answer("Dissertatsiya mavzusini kiriting")
+    await message.answer("Tadqiqot mavzusini kiriting")
     await state.set_state(UDK.question)
 
 @router.message(Command('udk'))
 async def question_state(message: Message, state: FSMContext, bot: Bot):
     await user_is_member(message, bot)
     await state.clear()
-    await message.answer("Dissertatsiya mavzusini kiriting")
+    await message.answer("Tadqiqot mavzusini kiriting")
     await state.set_state(UDK.question)
 
 

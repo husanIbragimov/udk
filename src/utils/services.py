@@ -53,7 +53,7 @@ def get_udk(topic):
         messages=[
             {
                 "role": "user",
-                "content": f"Dissertatsiya mavzusi: {topic}.Dissertatsiya mavzusi bo'yicha UDKni aniqlab ber.UDK ni dissertatsiya hujjatlarida rasmiy yozilishi kerak bo‘lgan shaklida tayyorlab ber(Agar Mavzu: dan keying so'z  boshqa savol bo'lsa unga bu dissertatsiya mavzusi emas degan javob qaytar.Boshqa mavzularni yozma va qo'shimcha takliflar berma, ya'ni javobda bu javobning AI tomonidan generatsiya qilinganligi bo'lmasin).(faqat UDK kodini va tarkibini yoz, boshqa hech narsa yozma)"
+                "content": f"{topic}.Ushbu dissertatsiya mavzusi bo'yicha UDKni aniqlab ber.Dissertatsiya hujjatlarida rasmiy yozilishi kerak bo‘lgan shaklida ber(javobning AI tomonidan generatsiya qilinganligi bo'lmasin).(faqat UDK kodini va uning tarkibidagi qismlar tavsifini yoz va bundan boshqa hech narsa yozma)"
             }
         ],
     )

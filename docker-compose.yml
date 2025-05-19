@@ -34,7 +34,7 @@ services:
     volumes:
       - ./.volumes/pgdata:/var/lib/postgresql/data
     ports:
-      - "5438:5432"
+      - "5440:5432"
 
     networks:
       - shared_network

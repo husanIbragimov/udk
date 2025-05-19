@@ -1,7 +1,7 @@
 from datetime import date
-from typing import Union
 
 from aiogram import Router, F, Bot
+from aiogram.enums import ParseMode
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, CallbackQuery
@@ -34,8 +34,11 @@ async def question_state(message: Message, state: FSMContext, bot: Bot):
 
 @router.message(UDK.question)
 async def save_question(message: Message, state: FSMContext):
-    await message.answer("Iltimos to'lov qiling va to'lov chekining rasmini yuboring.(To'lov narxi 5000 so'm)",
-                         reply_markup=reply.rmk)
+    text = "Iltimos to'lov qiling va to'lov chekining rasmini yuboring.\n(**To'lov narxi 100 ming so'm**)\n\n`8600 3129 2750 3256`"
+    await message.answer(
+        text=text, reply_markup=reply.rmk,
+        parse_mode=ParseMode.MARKDOWN
+    )
     order = await Order.create(
         user_id=message.from_user.id,
         question=message.text,

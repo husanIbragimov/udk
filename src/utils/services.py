@@ -53,7 +53,7 @@ def get_udk(topic):
         messages=[
             {
                 "role": "user",
-                "content": f"{topic}.Ushbu dissertatsiya mavzusi bo'yicha UDKni aniqlab ber.Dissertatsiya hujjatlarida rasmiy yozilishi kerak bo‘lgan shaklida ber(javobning AI tomonidan generatsiya qilinganligi bo'lmasin).(faqat UDK kodini va uning tarkibidagi qismlar tavsifini yoz va bundan boshqa hech narsa yozma)"
+                "content": f"{topic}.Ushbu dissertatsiya mavzusi bo'yicha UDKni aniqlab ber.Dissertatsiya hujjatlarida rasmiy yozilishi kerak bo‘lgan shaklida ber(javobning AI tomonidan generatsiya qilinganligi bo'lmasin).(faqat UDK kodi va fan shifrini va uning tarkibidagi qismlar tavsifini yoz va bundan boshqa hech narsa yozma)"
             }
         ],
     )

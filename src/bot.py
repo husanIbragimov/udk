@@ -2,6 +2,7 @@ import asyncio
 from handlers.users import start, find_udk
 from callbaks import pagination
 from middlewares.throttling import ThrottlingMiddleware
+from middlewares.check_sub import CheckSubs
 from utils.bot_stop import on_shutdown_notify
 from utils.set_bot_commands import (
     set_private_default_commands
@@ -14,6 +15,7 @@ async def main():
     await init_db()  
 
     dp.message.middleware(ThrottlingMiddleware())
+    dp.message.middleware(CheckSubs())
 
     dp.include_routers(
         start.router,

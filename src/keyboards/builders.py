@@ -1,4 +1,4 @@
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import InlineKeyboardMarkup
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 
 
@@ -31,6 +31,8 @@ def profile(text: str | list):
 def check_channel_sub(chanells: list):
     builder = InlineKeyboardBuilder()
     [builder.button(text=name, url=link) for name, link in chanells]
+    builder.button(text="✅ Tasdiqlash", callback_data="check_subscription")
+    builder.adjust(1)
     return builder.as_markup()
 
 
@@ -50,7 +52,7 @@ async def vertical_inline_kb(chat_link) -> InlineKeyboardMarkup:
         url=f'{chat_link}'
     )
     keyboard.button(
-        text="Tasdiqlash",
+        text="✅ Tasdiqlash",
         callback_data="check_subscription"
     )
     keyboard.adjust(2)

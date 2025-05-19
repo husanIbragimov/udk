@@ -7,7 +7,6 @@ from aiogram.types.chat_member_owner import ChatMemberStatus
 from data.config import CHANNEL_ID
 from keyboards import reply
 from utils.db.models import User
-from utils.services import user_is_member
 
 router = Router()
 
@@ -18,7 +17,6 @@ async def register_user(message: Message, bot: Bot):
         id=message.from_user.id,
         defaults={"username": message.from_user.username}
     )
-    await user_is_member(message, bot)
     await message.answer("Ushbu bot orqali siz UDKni aniqlashingiz mumkin ('🔍 UDK ni aniqlash' tugmasini bosing)", reply_markup=reply.find_udk)
 
 @router.callback_query(F.data.startswith("check_subscription"))

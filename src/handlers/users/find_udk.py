@@ -10,7 +10,7 @@ from data.config import MEDIA_PATH
 from keyboards import builders
 from keyboards import reply
 from utils.db.models import Order, Payment
-from utils.services import download_file, send_to_admins, get_udk, user_is_member
+from utils.services import download_file, send_to_admins, get_udk
 from utils.states import UDK
 
 router = Router()
@@ -18,14 +18,12 @@ router = Router()
 
 @router.message(F.text == "🔍 UDK ni aniqlash")
 async def question_state(message: Message, state: FSMContext, bot: Bot):
-    await user_is_member(message, bot)
     await state.clear()
     await message.answer("Tadqiqot mavzusini kiriting")
     await state.set_state(UDK.question)
 
 @router.message(Command('udk'))
 async def question_state(message: Message, state: FSMContext, bot: Bot):
-    await user_is_member(message, bot)
     await state.clear()
     await message.answer("Tadqiqot mavzusini kiriting")
     await state.set_state(UDK.question)
@@ -49,7 +47,6 @@ async def save_question(message: Message, state: FSMContext):
 
 @router.message(UDK.check_image)
 async def check_image(message: Message, state: FSMContext, bot: Bot):
-    print(message.json())
     if message.text:
         await message.answer("Iltimos checkni rasm yoki file qilib yuklang.")
         return
@@ -77,7 +74,6 @@ async def check_image(message: Message, state: FSMContext, bot: Bot):
 
 @router.callback_query(F.data.startswith("confirm_"))
 async def confirm_udk(call: CallbackQuery, bot: Bot):
-    print(call.json())
     order_id, user_id = call.data.split("_")[1:]
     order = await Order.filter(id=order_id).first()
     if not order:
